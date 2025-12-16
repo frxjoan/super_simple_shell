@@ -54,8 +54,8 @@ int main(void)
 	size_t size = 0;
 	pid_t child_pid;
 
-	line = NULL;
 	printf("$ ");
+	fflush(stdout);
 	if (getline(&line, &size, stdin) == -1)
 	{
 		free(line);
