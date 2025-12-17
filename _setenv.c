@@ -77,32 +77,32 @@ int _setenv(const char *name, const char *value, int overwrite)
 
 int main(void)
 {
-    char *old_path;
-    unsigned int i = 0;
+	char *old_path;
+	unsigned int i = 0;
 
 	init_env();
 
-    old_path = strdup(getenv("PATH"));
-    if (!old_path)
-        return (1);
+	old_path = strdup(getenv("PATH"));
+	if (!old_path)
+		return (1);
 
-    printf("---- PATH AVANT ----\n");
-    printf("%s\n\n", getenv("PATH"));
+	printf("---- PATH AVANT ----\n");
+	printf("%s\n\n", getenv("PATH"));
 
-    _setenv("PATH", "/nothing/to/TEST", 1);
+	_setenv("PATH", "/nothing/to/TEST", 1);
 
-    printf("---- ENV APRES MODIF ----\n");
-    while (environ[i])
-    {
-        printf("%s\n", environ[i]);
-        i++;
-    }
+	printf("---- ENV APRES MODIF ----\n");
+	while (environ[i])
+	{
+		printf("%s\n", environ[i]);
+		i++;
+	}
 
-    _setenv("PATH", old_path, 1);
-    free(old_path);
+	_setenv("PATH", old_path, 1);
+	free(old_path);
 
-    printf("\n---- PATH RESTAURE ----\n");
-    printf("%s\n", getenv("PATH"));
-
-    return (0);
+	printf("\n---- PATH RESTAURE ----\n");
+	printf("%s\n", getenv("PATH"));
+	free(environ);
+	return (0);
 }
